@@ -79,13 +79,11 @@ ndk {
                 .debug(false)
                 .build());
                 
-
-```
 SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
 参考代码如下：
-```
 
-    参考代码
+
+ 参考代码
    @Override
     public void shareToWechat(String url, String title, String description, Bitmap bitmap) {
         try {
@@ -114,11 +112,7 @@ SDK内部实现了分享功能，使用的前提是需要申请微信的appkey�
     private String buildTransaction(final String type) {
         return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
     }
-                
-
-```
-
-```
+              
 将微信分享通过浏览器打开的acitivty 中加入配置 ,建议新建一个界面,不要现有的逻辑冲突.
 这个界面的功能一个中转的功能,是通过浏览器唤起这个界面,这个界面打开地图.
 <!--微信分享-->
@@ -162,7 +156,6 @@ EpathMapSDK.openEpathMapActivity(context, map_id, target_id);
 
 
 定位监听,获取当前的位置,可以参考ipslocation demo ,需要提前获取定位和蓝牙权限
-```
 epathClient = new EpathClient(context, map_id);
 epathClient.registerLocationListener(new EpathLocationListener() {
     @Override
