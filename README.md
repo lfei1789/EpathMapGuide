@@ -84,7 +84,8 @@ ndk {
 SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
 参考代码如下：
 ```
-参考代码
+        参考代码
+        ```
    @Override
     public void shareToWechat(String url, String title, String description, Bitmap bitmap) {
         try {
