@@ -68,11 +68,13 @@ ndk {
 
 在Application 的onCreate 方法中进行初始化
 ``` 
-    使用默认配置信息
-    EpathMapSDK.init(context, EPATHMAP_APP_KEY);
-    或
-    定制配置信息 ,使用微信分享功能请实现相关的接口
-    EpathMapSDK.init(new EpathMapSDK.Configuration.Builder(context)
+##使用默认配置信息
+```
+EpathMapSDK.init(context, EPATHMAP_APP_KEY);
+
+##或定制配置信息 ,使用微信分享功能请实现相关的接口
+```
+EpathMapSDK.init(new EpathMapSDK.Configuration.Builder(context)
                 .appKey(Constants.EPATHMAP_APP_KEY)
                 .shareToWechatListener(this)
                 //正式版请关闭 默认是关闭的
@@ -80,14 +82,10 @@ ndk {
                 .build());
                 
 
-```
-SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
+##SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
 参考代码如下：
 ```
-        参考代码
-        ```
-   @Override
-    public void shareToWechat(String url, String title, String description, Bitmap bitmap) {
+public void shareToWechat(String url, String title, String description, Bitmap bitmap) {
         try {
             IWXAPI wxApi = WXAPIFactory.createWXAPI(this, "YOUR WECHAT APP_ID");
             wxApi.registerApp("YOUR WECHAT APP_ID");
@@ -133,9 +131,9 @@ SDK内部实现了分享功能，使用的前提是需要申请微信的appkey�
     </intent-filter>
 <!--微信分享结束-->
 
-重写以下两个方法
-  @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+##重写以下两个方法
+```
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
         //如果不是新建的页面判断一下scheme
@@ -156,13 +154,13 @@ SDK内部实现了分享功能，使用的前提是需要申请微信的appkey�
     }
 
 
-启动地图
+##启动地图
 EpathMapSDK.openEpathMapActivity(context, map_id);
-或
+##启动地图（可以附加目标target_id）
 EpathMapSDK.openEpathMapActivity(context, map_id, target_id);
 
 
-定位监听,获取当前的位置,可以参考ipslocation demo ,需要提前获取定位和蓝牙权限
+##定位监听,获取当前的位置,可以参考ipslocation demo ,需要提前获取定位和蓝牙权限
 ```
 epathClient = new EpathClient(context, map_id);
 epathClient.registerLocationListener(new EpathLocationListener() {
