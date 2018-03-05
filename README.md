@@ -67,7 +67,6 @@ ndk {
 初始化
 
 在Application 的onCreate 方法中进行初始化
-``` 
     使用默认配置信息
     EpathMapSDK.init(context, EPATHMAP_APP_KEY);
     或
@@ -79,11 +78,8 @@ ndk {
                 .debug(false)
                 .build());
                 
-
-```
 SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
 参考代码如下：
-```
 
     参考代码
    @Override
@@ -115,10 +111,6 @@ SDK内部实现了分享功能，使用的前提是需要申请微信的appkey�
         return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
     }
                 
-
-```
-
-```
 将微信分享通过浏览器打开的acitivty 中加入配置 ,建议新建一个界面,不要现有的逻辑冲突.
 这个界面的功能一个中转的功能,是通过浏览器唤起这个界面,这个界面打开地图.
 <!--微信分享-->
