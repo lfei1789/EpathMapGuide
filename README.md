@@ -153,12 +153,12 @@ public void shareToWechat(String url, String title, String description, Bitmap b
         finish();
     }
 
-
+                
 ##启动地图
 EpathMapSDK.openEpathMapActivity(context, map_id);
 ##启动地图（可以附加目标target_id）
 EpathMapSDK.openEpathMapActivity(context, map_id, target_id);
-
+                
 
 ##定位监听,获取当前的位置,可以参考ipslocation demo ,需要提前获取定位和蓝牙权限
 ```
@@ -185,10 +185,10 @@ protected void onDestroy() {
     super.onDestroy();
     epathClient.stop();
 }
-
+```
 
 ## 混淆
-
+```
 -dontwarn com.baidu.**
 -keep class com.baidu.** {*;}
 -dontwarn com.iflytek.**
