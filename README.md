@@ -8,11 +8,11 @@ EpathmapSDK-Android 是一套基于 Android 4.3 及以上版本的室内地图�
 请联系 [service@e-path.cn](service@e-path.cn)
 
 ## 添加依赖
-```
-compile ('com.shitu.location:epathmap:1.5.1', {
-        exclude group: 'com.android.support'
-    })
-```
+
+                compile ('com.shitu.location:epathmap:1.5.1', {
+                        exclude group: 'com.android.support'
+                })
+
 
 ## 目前支持的cpu 架构 arm,暂时不支持其他架构,请配置下面的cpu架构
 ndk {
@@ -61,26 +61,22 @@ ndk {
          <uses-permission android:name="android.permission.GET_TASKS" />
          <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
          <uses-permission android:name="android.permission.VIBRATE" />
-```
 
 ## 使用
 初始化
 
 在Application 的onCreate 方法中进行初始化
-``` 
 ##使用默认配置信息
-```
-EpathMapSDK.init(context, EPATHMAP_APP_KEY);
+                EpathMapSDK.init(context, EPATHMAP_APP_KEY);
 
 ##或定制配置信息 ,使用微信分享功能请实现相关的接口
-```
-EpathMapSDK.init(new EpathMapSDK.Configuration.Builder(context)
-                .appKey(Constants.EPATHMAP_APP_KEY)
-                .shareToWechatListener(this)
-                //正式版请关闭 默认是关闭的
-                .debug(false)
-                .build());
- ```               
+                EpathMapSDK.init(new EpathMapSDK.Configuration.Builder(context)
+                                .appKey(Constants.EPATHMAP_APP_KEY)
+                         .shareToWechatListener(this)
+                         //正式版请关闭 默认是关闭的
+                         .debug(false)
+                         .build());
+               
 
 ##SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
 参考代码如下：
@@ -113,10 +109,9 @@ public void shareToWechat(String url, String title, String description, Bitmap b
         return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
     }
                 
-
 ```
 
-```
+
 将微信分享通过浏览器打开的acitivty 中加入配置 ,建议新建一个界面,不要现有的逻辑冲突.
 这个界面的功能一个中转的功能,是通过浏览器唤起这个界面,这个界面打开地图.
 ```
@@ -130,7 +125,7 @@ public void shareToWechat(String url, String title, String description, Bitmap b
             android:scheme=你的scheme></data>
     </intent-filter>
 <!--微信分享结束-->
-
+```
 ##重写以下两个方法
 ```
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -152,12 +147,12 @@ public void shareToWechat(String url, String title, String description, Bitmap b
         EpathMapSDK.shareLinkToMapView(intent);
         finish();
     }
-
+```
                 
 ##启动地图
-EpathMapSDK.openEpathMapActivity(context, map_id);
+                EpathMapSDK.openEpathMapActivity(context, map_id);
 ##启动地图（可以附加目标target_id）
-EpathMapSDK.openEpathMapActivity(context, map_id, target_id);
+                EpathMapSDK.openEpathMapActivity(context, map_id, target_id);
                 
 
 ##定位监听,获取当前的位置,可以参考ipslocation demo ,需要提前获取定位和蓝牙权限
@@ -176,8 +171,6 @@ epathClient.registerLocationListener(new EpathLocationListener() {
     }
 });
 epathClient.start();
-```
-
 activity 结束时调用
 
 @Override
@@ -207,8 +200,6 @@ protected void onDestroy() {
 建议方式.建议版本号25.3.1
 2. 修改项目的support 支持和  compile 'com.android.support:appcompat-v7:25.3.1' 版本号一致
 
-2.0 
-
 app如果使用了okhttp ,glide ...出现第三发开源库 冲突
 两种解决方案:
 1.通过  exclude group: "com.squareup.okhttp3" 方式处理
@@ -218,9 +209,6 @@ app如果使用了okhttp ,glide ...出现第三发开源库 冲突
 "glide"             : "com.github.bumptech.glide:glide:3.7.0",
 "okhttp"            : "com.squareup.okhttp3:okhttp:3.8.0",
 "gson"              : "com.google.code.gson:gson:2.8.2",
-
-
- 3.0
 
     allprojects {
         repositories {
