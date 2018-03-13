@@ -63,17 +63,15 @@ EpathmapSDK-Android 是一套基于 Android 4.3 及以上版本的室内地图�
          <uses-permission android:name="android.permission.VIBRATE" />
 
 ## 使用
-初始化
----
+## 初始化
 
-在Application 的onCreate 方法中进行初始化
----
-
-## 使用默认配置信息
+        在Application 的onCreate 方法中进行初始化
+        
+### 使用默认配置信息
 
     EpathMapSDK.init(context, EPATHMAP_APP_KEY);
 
-## 或定制配置信息 ,使用微信分享功能请实现相关的接口
+### 或定制配置信息 ,使用微信分享功能请实现相关的接口
 
     EpathMapSDK.init(new EpathMapSDK.Configuration.Builder(context)
       .appKey(Constants.EPATHMAP_APP_KEY)
@@ -82,8 +80,8 @@ EpathmapSDK-Android 是一套基于 Android 4.3 及以上版本的室内地图�
       .build());
                
 
-## SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
-## 参考代码如下：
+### SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
+### 参考代码如下：
 
 ```
 public void shareToWechat(String url, String title, String description, Bitmap bitmap) {
@@ -131,7 +129,7 @@ public void shareToWechat(String url, String title, String description, Bitmap b
     </intent-filter>
 <!--微信分享结束-->
 ```
-##重写以下两个方法
+### 重写以下两个方法
 ```
   protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
