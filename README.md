@@ -9,16 +9,16 @@ EpathmapSDK-Android 是一套基于 Android 4.3 及以上版本的室内地图�
 
 ## 添加依赖
 
-                compile ('com.shitu.location:epathmap:1.5.1', {
-                        exclude group: 'com.android.support'
-                })
+    compile ('com.shitu.location:epathmap:1.5.1', {
+     exclude group: 'com.android.support'
+    })
 
 
 ## 目前支持的cpu 架构 arm,暂时不支持其他架构,请配置下面的cpu架构
-ndk {
-            // 设置支持的 SO 库构架
-            abiFilters 'armeabi'
-}
+    ndk {
+    // 设置支持的 SO 库构架
+      abiFilters 'armeabi'
+    }
 
 ## 加入权限
 导入EpathmapSDK后需要
@@ -64,22 +64,27 @@ ndk {
 
 ## 使用
 初始化
+---
 
 在Application 的onCreate 方法中进行初始化
+---
+
 ##使用默认配置信息
-                EpathMapSDK.init(context, EPATHMAP_APP_KEY);
+
+    EpathMapSDK.init(context, EPATHMAP_APP_KEY);
 
 ##或定制配置信息 ,使用微信分享功能请实现相关的接口
-                EpathMapSDK.init(new EpathMapSDK.Configuration.Builder(context)
-                                .appKey(Constants.EPATHMAP_APP_KEY)
-                         .shareToWechatListener(this)
-                         //正式版请关闭 默认是关闭的
-                         .debug(false)
-                         .build());
+
+    EpathMapSDK.init(new EpathMapSDK.Configuration.Builder(context)
+      .appKey(Constants.EPATHMAP_APP_KEY)
+      .shareToWechatListener(this)
+      .debug(false)  //正式版请关闭 默认是关闭的
+      .build());
                
 
 ##SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
 参考代码如下：
+
 ```
 public void shareToWechat(String url, String title, String description, Bitmap bitmap) {
         try {
@@ -149,10 +154,16 @@ public void shareToWechat(String url, String title, String description, Bitmap b
     }
 ```
                 
-##启动地图
-                EpathMapSDK.openEpathMapActivity(context, map_id);
-##启动地图（可以附加目标target_id）
-                EpathMapSDK.openEpathMapActivity(context, map_id, target_id);
+启动地图
+---
+
+    EpathMapSDK.openEpathMapActivity(context, map_id);
+    
+    
+启动地图（可以附加目标target_id）
+---
+                
+    EpathMapSDK.openEpathMapActivity(context, map_id, target_id);
                 
 
 ##定位监听,获取当前的位置,可以参考ipslocation demo ,需要提前获取定位和蓝牙权限
@@ -192,23 +203,25 @@ protected void onDestroy() {
 
 微信分享以及复制跳转请参考demo
 ## FAQ
-1.0
 
-出现上面的类似xml资源文件缺失的情况:
-两种解决方案:
-1. 在通过gradle 引用是加入exclude group: 'com.android.support' ,并且自己加入compile 'com.android.support:appcompat-v7:版本号'
-建议方式.建议版本号25.3.1
-2. 修改项目的support 支持和  compile 'com.android.support:appcompat-v7:25.3.1' 版本号一致
+出现类似xml资源文件缺失的情况:
+---
+    两种解决方案:
+      1. 在通过gradle 引用是加入exclude group: 'com.android.support' ,并且自己加入compile 'com.android.support:appcompat-v7:版本号'
+        建议方式.建议版本号25.3.1
+      2. 修改项目的support 支持和  compile 'com.android.support:appcompat-v7:25.3.1' 版本号一致
 
 app如果使用了okhttp ,glide ...出现第三发开源库 冲突
-两种解决方案:
-1.通过  exclude group: "com.squareup.okhttp3" 方式处理
-然后保留项目的okhttp和glide 
-2.保持和sdk的一致引入的第三方库版本号一致.否则有可能出现冲突
+---
 
-"glide"             : "com.github.bumptech.glide:glide:3.7.0",
-"okhttp"            : "com.squareup.okhttp3:okhttp:3.8.0",
-"gson"              : "com.google.code.gson:gson:2.8.2",
+    两种解决方案:
+      1.通过  exclude group: "com.squareup.okhttp3" 方式处理
+        然后保留项目的okhttp和glide 
+      2.保持和sdk的一致引入的第三方库版本号一致.否则有可能出现冲突
+        如下所示：
+        com.github.bumptech.glide:glide:3.7.0,
+        com.squareup.okhttp3:okhttp:3.8.0,
+        com.google.code.gson:gson:2.8.2,
 
     allprojects {
         repositories {
