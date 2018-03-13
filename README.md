@@ -8,11 +8,11 @@ EpathmapSDK-Android 是一套基于 Android 4.3 及以上版本的室内地图�
 请联系 [service@e-path.cn](service@e-path.cn)
 
 ## 添加依赖
-
+```
 compile ('com.shitu.location:epathmap:1.5.1', {
         exclude group: 'com.android.support'
     })
-
+```
 
 ## 目前支持的cpu 架构 arm,暂时不支持其他架构,请配置下面的cpu架构
 ndk {
@@ -80,7 +80,7 @@ EpathMapSDK.init(new EpathMapSDK.Configuration.Builder(context)
                 //正式版请关闭 默认是关闭的
                 .debug(false)
                 .build());
-                
+ ```               
 
 ##SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
 参考代码如下：
@@ -176,7 +176,7 @@ epathClient.registerLocationListener(new EpathLocationListener() {
     }
 });
 epathClient.start();
-
+```
 
 activity 结束时调用
 
