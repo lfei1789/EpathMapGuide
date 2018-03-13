@@ -69,11 +69,11 @@ EpathmapSDK-Android 是一套基于 Android 4.3 及以上版本的室内地图�
 在Application 的onCreate 方法中进行初始化
 ---
 
-##使用默认配置信息
+## 使用默认配置信息
 
     EpathMapSDK.init(context, EPATHMAP_APP_KEY);
 
-##或定制配置信息 ,使用微信分享功能请实现相关的接口
+## 或定制配置信息 ,使用微信分享功能请实现相关的接口
 
     EpathMapSDK.init(new EpathMapSDK.Configuration.Builder(context)
       .appKey(Constants.EPATHMAP_APP_KEY)
@@ -82,8 +82,8 @@ EpathmapSDK-Android 是一套基于 Android 4.3 及以上版本的室内地图�
       .build());
                
 
-##SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
-参考代码如下：
+## SDK内部实现了分享功能，使用的前提是需要申请微信的appkey，并且需要实现接口ShareToWechatListener接口
+## 参考代码如下：
 
 ```
 public void shareToWechat(String url, String title, String description, Bitmap bitmap) {
@@ -166,7 +166,9 @@ public void shareToWechat(String url, String title, String description, Bitmap b
     EpathMapSDK.openEpathMapActivity(context, map_id, target_id);
                 
 
-##定位监听,获取当前的位置,可以参考ipslocation demo ,需要提前获取定位和蓝牙权限
+定位监听,获取当前的位置,可以参考ipslocation demo ,需要提前获取定位和蓝牙权限
+---
+
 ```
 epathClient = new EpathClient(context, map_id);
 epathClient.registerLocationListener(new EpathLocationListener() {
@@ -206,36 +208,39 @@ protected void onDestroy() {
 
 出现类似xml资源文件缺失的情况:
 ---
-    两种解决方案:
-      1. 在通过gradle 引用是加入exclude group: 'com.android.support' ,并且自己加入compile 'com.android.support:appcompat-v7:版本号'
-        建议方式.建议版本号25.3.1
-      2. 修改项目的support 支持和  compile 'com.android.support:appcompat-v7:25.3.1' 版本号一致
+
+        两种解决方案:
+            1. 在通过gradle 引用时加入
+                exclude group: 'com.android.support' ,
+                并且自己加入compile 'com.android.support:appcompat-v7:版本号'
+                建议方式.建议版本号25.3.1
+            2. 修改项目的support 支持和  compile 'com.android.support:appcompat-v7:25.3.1' 版本号一致
 
 app如果使用了okhttp ,glide ...出现第三发开源库 冲突
 ---
 
-    两种解决方案:
-      1.通过  exclude group: "com.squareup.okhttp3" 方式处理
-        然后保留项目的okhttp和glide 
-      2.保持和sdk的一致引入的第三方库版本号一致.否则有可能出现冲突
-        如下所示：
-        com.github.bumptech.glide:glide:3.7.0,
-        com.squareup.okhttp3:okhttp:3.8.0,
-        com.google.code.gson:gson:2.8.2,
-
-    allprojects {
-        repositories {
+        两种解决方案:
+            1.通过  exclude group: "com.squareup.okhttp3" 方式处理
+                然后保留项目的okhttp和glide 
+            2.保持和sdk的一致引入的第三方库版本号一致.否则有可能出现冲突
+                如下所示：
+                com.github.bumptech.glide:glide:3.7.0,
+                com.squareup.okhttp3:okhttp:3.8.0,
+                com.google.code.gson:gson:2.8.2,
+        allprojects {
+            repositories {
             jcenter()
             maven { url "https://jitpack.io" }
             flatDir {
                 dirs 'libs'
+               }
             }
         }
-    }
     
-    compileOptions {
-         sourceCompatibility JavaVersion.VERSION_1_8
-         targetCompatibility JavaVersion.VERSION_1_8
-     }
+    
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
 
 
