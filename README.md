@@ -164,7 +164,7 @@ public void shareToWechat(String url, String title, String description, Bitmap b
     EpathMapSDK.openEpathMapActivity(context, map_id, target_id);
                 
 
-定位监听,获取当前的位置,可以参考ipslocation demo ,需要提前获取定位和蓝牙权限
+定位监听,获取当前的位置,可以参考 demo ,需要提前获取定位和蓝牙权限
 ---
 
 ```
@@ -189,6 +189,37 @@ protected void onDestroy() {
     super.onDestroy();
     epathClient.stop();
 }
+```
+
+定位并签到,可以参考demo ,需要提前获取定位和蓝牙权限
+---
+
+```
+EpathClient epathClient = new EpathClient(MainActivity.this, mapId);
+epathClient.registerLocationListener(new EpathLocationListener() {
+    @Override
+    public void onReceiveLocation(EpathLocation ipsLocation) {
+        if (ipsLocation.isInThisMap()) {
+         //获取本地定位成功，去获取是否在目的建筑物范围内
+            epathClient.startCheckLocationRange(mapId, "yinshuiji");
+        }
+    }
+    @Override
+    public void onReceiveRange(boolean isInclude) {
+        if (isInclude) {
+        Toast.makeText(MainActivity.this, "打卡成功", Toast.LENGTH_SHORT).show();
+        } else {
+        Toast.makeText(MainActivity.this, "打卡失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+});
+epathClient.start();
+
+startCheckLocationRange(String mapId,String targetId,int distance)
+方法说明：改方法用于执行特定目标的定位签到操作 
+参数说明：mapId地图ID、targetId 目标房间的UUID，distance 用户当前位置与目标位置的间距，可不传，默认为12
+返回说明：在epathClient 注册的回调方法onReceiveRange 处理，isInclude  为true代表用户与目标位置在间距范围内
+
 ```
 
 ## 混淆
