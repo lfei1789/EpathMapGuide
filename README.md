@@ -171,7 +171,7 @@ public void shareToWechat(String url, String title, String description, Bitmap b
 epathClient = new EpathClient(context, map_id);
 epathClient.registerLocationListener(new EpathLocationListener() {
     @Override
-    public void onReceiveLocation(EpathLocation ipsLocation){
+    public void onReceiveLocation(EpathLocation epathLocation){
     if(epathLocation == null){
         //定位失败;
         return;
@@ -198,12 +198,12 @@ protected void onDestroy() {
 EpathClient epathClient = new EpathClient(MainActivity.this, mapId);
 epathClient.registerLocationListener(new EpathLocationListener() {
     @Override
-    public void onReceiveLocation(EpathLocation ipsLocation) {
+    public void onReceiveLocation(EpathLocation epathLocation) {
          if(epathLocation == null){
             //定位失败;
             return;
         }
-        if (ipsLocation.isInThisMap()) {
+        if (epathLocation.isInThisMap()) {
          //获取本地定位成功，去获取是否在目的建筑物范围内
             epathClient.startCheckLocationRange(mapId, "yinshuiji");
         }
