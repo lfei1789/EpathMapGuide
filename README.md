@@ -199,6 +199,10 @@ EpathClient epathClient = new EpathClient(MainActivity.this, mapId);
 epathClient.registerLocationListener(new EpathLocationListener() {
     @Override
     public void onReceiveLocation(EpathLocation ipsLocation) {
+         if(epathLocation == null){
+            //定位失败;
+            return;
+        }
         if (ipsLocation.isInThisMap()) {
          //获取本地定位成功，去获取是否在目的建筑物范围内
             epathClient.startCheckLocationRange(mapId, "yinshuiji");
